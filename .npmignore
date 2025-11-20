@@ -1,0 +1,51 @@
+# Source files
+src/
+tests/
+examples/
+
+# Configuration
+tsconfig.json
+jest.config.js
+.eslintrc.js
+.prettierrc
+
+# Development
+.env
+.env.*
+*.log
+
+# Documentation (will be in docs/)
+docs/
+
+# Git
+.git/
+.gitignore
+
+# IDE
+.vscode/
+.idea/
+
+# Build artifacts
+*.tsbuildinfo
+coverage/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Legacy files
+bot.js
+pix-generator.js
+test-*.js
+*.md
+!README.md
+!LICENSE
+CHANGELOG.md
+CONFIGURACAO.md
+EXEMPLO-ENV.md
+FLUXO-BOT.md
+GUIA-RAPIDO.md
+RECURSOS.md
+SOLUCAO-ERROS.md
+VERIFICAR-CHAVE-PIX.md
+
