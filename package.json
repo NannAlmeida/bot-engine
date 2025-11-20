@@ -1,5 +1,5 @@
 {
-  "name": "@paulorenandev/bot-engine",
+  "name": "bot-engine",
   "version": "1.0.0",
   "description": "A modern, modular TypeScript framework for building Telegram bots with Telegraf",
   "main": "dist/index.js",
@@ -37,12 +37,12 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/paulorenan/telegraf-bot-framework"
+    "url": "https://github.com/NannAlmeida/bot-engine"
   },
   "bugs": {
-    "url": "https://github.com/paulorenan/telegraf-bot-framework/issues"
+    "url": "https://github.com/NannAlmeida/bot-engine/issues"
   },
-  "homepage": "https://github.com/paulorenan/telegraf-bot-framework#readme",
+  "homepage": "https://github.com/NannAlmeida/bot-engine#readme",
   "files": [
     "dist",
     "README.md",
