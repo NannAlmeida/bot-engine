@@ -4,7 +4,7 @@
 
 A modern, modular TypeScript framework for building Telegram bots with [Telegraf](https://telegraf.js.org/)
 
-[![npm version](https://img.shields.io/npm/v/@paulorenan/telegraf-bot-framework.svg)](https://www.npmjs.com/package/@paulorenan/telegraf-bot-framework)
+[![npm version](https://img.shields.io/npm/v/bot-engine-telegram.svg)](https://www.npmjs.com/package/bot-engine-telegram)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.9-blue)](https://www.typescriptlang.org/)
 [![Telegraf](https://img.shields.io/badge/Telegraf-4.15-green)](https://telegraf.js.org/)
@@ -28,13 +28,13 @@ A modern, modular TypeScript framework for building Telegram bots with [Telegraf
 ## 📦 Installation
 
 ```bash
-npm install @paulorenan/telegraf-bot-framework telegraf
+npm install bot-engine-telegram telegraf
 ```
 
 or with yarn:
 
 ```bash
-yarn add @paulorenan/telegraf-bot-framework telegraf
+yarn add bot-engine-telegram telegraf
 ```
 
 ## 🚀 Quick Start
@@ -42,7 +42,7 @@ yarn add @paulorenan/telegraf-bot-framework telegraf
 ### Basic Bot
 
 ```typescript
-import { BotEngine } from '@paulorenan/telegraf-bot-framework';
+import { BotEngine } from 'bot-engine-telegram';
 
 const bot = new BotEngine({
   token: process.env.TELEGRAM_BOT_TOKEN!,
@@ -63,7 +63,7 @@ bot.launch();
 ### With Middleware
 
 ```typescript
-import { BotEngine, LoggingMiddleware, RateLimitMiddleware } from '@paulorenan/telegraf-bot-framework';
+import { BotEngine, LoggingMiddleware, RateLimitMiddleware } from 'bot-engine-telegram';
 
 const bot = new BotEngine({
   token: process.env.TELEGRAM_BOT_TOKEN!,
@@ -81,7 +81,7 @@ const bot = new BotEngine({
 ### With Plugins
 
 ```typescript
-import { BotEngine, MenuPlugin, HelpPlugin } from '@paulorenan/telegraf-bot-framework';
+import { BotEngine, MenuPlugin, HelpPlugin } from 'bot-engine-telegram';
 
 const bot = new BotEngine({
   token: process.env.TELEGRAM_BOT_TOKEN!
@@ -165,7 +165,7 @@ bot.registerCommand({
 Create interactive menus with ease:
 
 ```typescript
-import { MenuPlugin, MenuBuilder } from '@paulorenan/telegraf-bot-framework';
+import { MenuPlugin, MenuBuilder } from 'bot-engine-telegram';
 
 const menuPlugin = new MenuPlugin();
 bot.addPlugin(menuPlugin);
@@ -185,7 +185,7 @@ menuPlugin.registerMenu(menu);
 Organized help system with topics:
 
 ```typescript
-import { HelpPlugin } from '@paulorenan/telegraf-bot-framework';
+import { HelpPlugin } from 'bot-engine-telegram';
 
 const helpPlugin = new HelpPlugin({
   topics: [
@@ -208,7 +208,7 @@ bot.addPlugin(helpPlugin);
 Log all incoming updates:
 
 ```typescript
-import { LoggingMiddleware } from '@paulorenan/telegraf-bot-framework';
+import { LoggingMiddleware } from 'bot-engine-telegram';
 
 bot.use(new LoggingMiddleware());
 ```
@@ -218,7 +218,7 @@ bot.use(new LoggingMiddleware());
 Protect your bot from spam:
 
 ```typescript
-import { RateLimitMiddleware } from '@paulorenan/telegraf-bot-framework';
+import { RateLimitMiddleware } from 'bot-engine-telegram';
 
 bot.use(new RateLimitMiddleware(10, 60000)); // 10 req/min
 ```
@@ -228,7 +228,7 @@ bot.use(new RateLimitMiddleware(10, 60000)); // 10 req/min
 Restrict access to specific users:
 
 ```typescript
-import { AuthMiddleware } from '@paulorenan/telegraf-bot-framework';
+import { AuthMiddleware } from 'bot-engine-telegram';
 
 bot.use(new AuthMiddleware([123456, 789012])); // User IDs
 ```
@@ -238,7 +238,7 @@ bot.use(new AuthMiddleware([123456, 789012])); // User IDs
 Fluent API for building complex messages:
 
 ```typescript
-import { MessageBuilder } from '@paulorenan/telegraf-bot-framework';
+import { MessageBuilder } from 'bot-engine-telegram';
 
 const message = MessageBuilder.create()
   .setText('*Choose an option:*')
@@ -270,8 +270,8 @@ Run examples:
 
 ```bash
 # Clone the repository
-git clone https://github.com/paulorenan/telegraf-bot-framework.git
-cd telegraf-bot-framework
+git clone https://github.com/NannAlmeida/bot-engine.git
+cd bot-engine
 
 # Install dependencies
 npm install
@@ -303,7 +303,7 @@ npm run test:coverage
 Create your own plugins to extend functionality:
 
 ```typescript
-import { Plugin } from '@paulorenan/telegraf-bot-framework';
+import { Plugin } from 'bot-engine-telegram';
 
 export class MyPlugin extends Plugin {
   name = 'my-plugin';
@@ -370,7 +370,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 **Paulo Renan**
 
 - Email: rennandeveloper@gmail.com
-- GitHub: [@paulorenan](https://github.com/paulorenan)
+- GitHub: [@NannAlmeida](https://github.com/NannAlmeida)
 
 ## 🙏 Acknowledgments
 

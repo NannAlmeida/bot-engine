@@ -42,14 +42,14 @@ Criados testes para:
 #### Package.json Configurado
 ```json
 {
-  "name": "@paulorenan/telegraf-bot-framework",
+  "name": "bot-engine-telegram",
   "version": "1.0.0",
   "author": {
     "name": "Paulo Renan",
     "email": "rennandeveloper@gmail.com"
   },
   "license": "MIT",
-  "repository": "github:paulorenan/telegraf-bot-framework",
+  "repository": "github:NannAlmeida/bot-engine",
   "files": ["dist", "README.md", "LICENSE"],
   "main": "dist/index.js",
   "types": "dist/index.d.ts"
@@ -189,19 +189,19 @@ npm publish --access public
 
 ### Passo 4: Verificar
 ```bash
-npm info @paulorenan/telegraf-bot-framework
+npm info bot-engine-telegram
 ```
 
 ## 📝 Como Usar Após Publicação
 
 ### Instalação
 ```bash
-npm install @paulorenan/telegraf-bot-framework telegraf
+npm install bot-engine-telegram telegraf
 ```
 
 ### Uso Básico
 ```typescript
-import { BotEngine } from '@paulorenan/telegraf-bot-framework';
+import { BotEngine } from 'bot-engine-telegram';
 
 const bot = new BotEngine({
   token: process.env.TELEGRAM_BOT_TOKEN!
@@ -278,7 +278,7 @@ bot.launch();
    ```
 
 2. ✅ **Criar Repositório GitHub:**
-   - Criar repo: `telegraf-bot-framework`
+   - Criar repo: `bot-engine`
    - Push do código
    - Adicionar badges no README
 
@@ -312,7 +312,7 @@ bot.launch();
 
 **Paulo Renan**  
 Email: rennandeveloper@gmail.com  
-GitHub: @paulorenan
+GitHub: @NannAlmeida
 
 ---
 

@@ -48,8 +48,8 @@ Enhancement suggestions are tracked as GitHub issues. When creating an enhanceme
 
 ```bash
 # Clone the repository
-git clone https://github.com/paulorenan/telegraf-bot-framework.git
-cd telegraf-bot-framework
+git clone https://github.com/NannAlmeida/bot-engine.git
+cd bot-engine
 
 # Install dependencies
 npm install
@@ -138,7 +138,7 @@ describe('BotEngine', () => {
 
 Feel free to reach out:
 - Email: rennandeveloper@gmail.com
-- GitHub Issues: [Create an issue](https://github.com/paulorenan/telegraf-bot-framework/issues)
+- GitHub Issues: [Create an issue](https://github.com/NannAlmeida/bot-engine/issues)
 
 ## License
 

@@ -28,7 +28,7 @@ Certifique-se de que o `package.json` está correto:
 
 ```json
 {
-  "name": "@paulorenan/telegraf-bot-framework",
+  "name": "bot-engine-telegram",
   "version": "1.0.0",
   "description": "A modern, modular TypeScript framework for building Telegram bots",
   "author": {
@@ -92,7 +92,7 @@ npm publish
 
 ### 7. Verificar publicação
 
-Acesse: https://www.npmjs.com/package/@paulorenan/telegraf-bot-framework
+Acesse: https://www.npmjs.com/package/bot-engine-telegram
 
 ## 📝 Checklist Antes de Publicar
 
@@ -146,7 +146,7 @@ npm publish --tag latest  # padrão
 
 Instalar versão específica:
 ```bash
-npm install @paulorenan/telegraf-bot-framework@beta
+npm install bot-engine-telegram@beta
 ```
 
 ## 🔙 Despublicar (só nas primeiras 72h)
@@ -154,20 +154,20 @@ npm install @paulorenan/telegraf-bot-framework@beta
 ⚠️ Use com cuidado!
 
 ```bash
-npm unpublish @paulorenan/telegraf-bot-framework@1.0.0
+npm unpublish bot-engine-telegram@1.0.0
 ```
 
 ## 📊 Verificar Status
 
 ```bash
 # Info do pacote
-npm info @paulorenan/telegraf-bot-framework
+npm info bot-engine-telegram
 
 # Versões publicadas
-npm view @paulorenan/telegraf-bot-framework versions
+npm view bot-engine-telegram versions
 
 # Downloads
-npm view @paulorenan/telegraf-bot-framework downloads
+npm view bot-engine-telegram downloads
 ```
 
 ## 🔗 Links Úteis
@@ -179,8 +179,8 @@ npm view @paulorenan/telegraf-bot-framework downloads
 
 ## 🎯 Após Publicar
 
-1. ✅ Verificar no NPM: https://www.npmjs.com/package/@paulorenan/telegraf-bot-framework
-2. ✅ Testar instalação: `npm install @paulorenan/telegraf-bot-framework`
+1. ✅ Verificar no NPM: https://www.npmjs.com/package/bot-engine-telegram
+2. ✅ Testar instalação: `npm install bot-engine-telegram`
 3. ✅ Criar release no GitHub
 4. ✅ Atualizar README com badge do NPM
 5. ✅ Anunciar em redes sociais (opcional)

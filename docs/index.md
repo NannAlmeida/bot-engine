@@ -37,7 +37,7 @@ Welcome to the Telegraf Bot Framework documentation!
 ## 🚀 Quick Example
 
 ```typescript
-import { BotEngine } from '@paulorenan/telegraf-bot-framework';
+import { BotEngine } from 'bot-engine-telegram';
 
 const bot = new BotEngine({
   token: process.env.TELEGRAM_BOT_TOKEN!
@@ -55,8 +55,8 @@ bot.launch();
 
 ## 📖 Learn More
 
-- [GitHub Repository](https://github.com/paulorenan/telegraf-bot-framework)
-- [npm Package](https://www.npmjs.com/package/@paulorenan/telegraf-bot-framework)
+- [GitHub Repository](https://github.com/NannAlmeida/bot-engine)
+- [npm Package](https://www.npmjs.com/package/bot-engine-telegram)
 - [Telegraf Documentation](https://telegraf.js.org/)
 
 ## 🤝 Contributing
@@ -71,7 +71,7 @@ MIT License - see [LICENSE](../LICENSE) for details.
 
 **Paulo Renan**
 - Email: rennandeveloper@gmail.com
-- GitHub: [@paulorenan](https://github.com/paulorenan)
+- GitHub: [@NannAlmeida](https://github.com/NannAlmeida)
 
 ---
 
