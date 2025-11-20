@@ -1,5 +1,5 @@
 {
-  "name": "bot-engine",
+  "name": "bot-engine-telegram",
   "version": "1.0.0",
   "description": "A modern, modular TypeScript framework for building Telegram bots with Telegraf",
   "main": "dist/index.js",
