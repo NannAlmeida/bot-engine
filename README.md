@@ -18,6 +18,7 @@ A modern, modular TypeScript framework for building Telegram bots with [Telegraf
 - 🏗️ **Modular Architecture** - Plugin-based system for reusable functionality
 - 🔌 **Plugin System** - Create and share custom plugins
 - 🛡️ **Middleware Support** - Built-in middleware for logging, auth, rate limiting
+- 📡 **Event System** - Register handlers for all 70+ Telegraf events with full type safety
 - 💾 **Session Management** - Integrated session storage with TTL
 - 🎯 **Type-Safe** - Full TypeScript support with comprehensive type definitions
 - 🎨 **Builder Pattern** - Fluent API for building messages and menus
@@ -142,6 +143,43 @@ bot.registerMessage({
     await ctx.reply('Hello there!');
   }
 });
+```
+
+### Events
+
+Register handlers for any Telegraf event with full type safety:
+
+```typescript
+// Handle photo uploads
+bot.registerEvent({
+  event: 'photo',
+  description: 'Handle photo messages',
+  handler: async (ctx) => {
+    await ctx.reply('📸 Photo received!');
+  }
+});
+
+// Handle stickers
+bot.registerEvent({
+  event: 'sticker',
+  handler: async (ctx) => {
+    await ctx.reply('😄 Nice sticker!');
+  }
+});
+
+// Handle new chat members
+bot.registerEvent({
+  event: 'new_chat_members',
+  handler: async (ctx) => {
+    const newMembers = (ctx.message as any)?.new_chat_members ?? [];
+    for (const member of newMembers) {
+      await ctx.reply(`👋 Welcome, ${member.first_name}!`);
+    }
+  }
+});
+
+// All 70+ Telegraf events are supported!
+// TypeScript will autocomplete all available events
 ```
 
 ### Sessions

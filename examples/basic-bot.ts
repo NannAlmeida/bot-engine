@@ -103,6 +103,39 @@ bot.registerCommand({
   }
 });
 
+// Example: Register event handlers using the new registerEvent method
+// This demonstrates how to listen to any Telegraf event easily
+
+// Handle photo messages
+bot.registerEvent({
+  event: 'photo',
+  description: 'Handle photo uploads',
+  handler: async (ctx) => {
+    await ctx.reply('📸 Foto recebida! Obrigado por compartilhar.');
+  }
+});
+
+// Handle sticker messages
+bot.registerEvent({
+  event: 'sticker',
+  description: 'Handle sticker messages',
+  handler: async (ctx) => {
+    await ctx.reply('😄 Sticker legal!');
+  }
+});
+
+// Handle new chat members
+bot.registerEvent({
+  event: 'new_chat_members',
+  description: 'Welcome new members',
+  handler: async (ctx) => {
+    const newMembers = (ctx.message as any)?.new_chat_members ?? [];
+    for (const member of newMembers) {
+      await ctx.reply(`👋 Bem-vindo, ${member.first_name}!`);
+    }
+  }
+});
+
 // Launch the bot
 bot.launch()
   .then(() => {

@@ -113,6 +113,43 @@ bot.registerCommand({
 });
 ```
 
+## 🎯 Registrar Eventos
+
+Registre handlers para qualquer evento do Telegraf de forma simples:
+
+```typescript
+// Fotos
+bot.registerEvent({
+  event: 'photo',
+  description: 'Processar fotos enviadas',
+  handler: async (ctx) => {
+    await ctx.reply('📸 Foto recebida! Obrigado por compartilhar.');
+  }
+});
+
+// Stickers
+bot.registerEvent({
+  event: 'sticker',
+  handler: async (ctx) => {
+    await ctx.reply('😄 Sticker legal!');
+  }
+});
+
+// Novos membros
+bot.registerEvent({
+  event: 'new_chat_members',
+  handler: async (ctx) => {
+    const newMembers = (ctx.message as any)?.new_chat_members ?? [];
+    for (const member of newMembers) {
+      await ctx.reply(`👋 Bem-vindo, ${member.first_name}!`);
+    }
+  }
+});
+
+// Todos os 70+ eventos do Telegraf são suportados!
+// O TypeScript autocompleta todos os eventos quando você digita 'event:'
+```
+
 ## 🔌 Adicionar Plugin
 
 ```typescript

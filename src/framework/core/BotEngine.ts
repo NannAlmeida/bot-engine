@@ -11,10 +11,12 @@ import {
   ICommandHandler,
   IActionHandler,
   IMessageHandler,
+  IEventHandler,
   IMiddleware,
   IPlugin,
   ILogger
 } from '../types/interfaces';
+import { TelegrafEvent } from '../types/types';
 import { SessionManager } from './SessionManager';
 import { ConsoleLogger } from '../utils/Logger';
 
@@ -138,6 +140,52 @@ export class BotEngine implements IBotEngine {
         await this.handleError(ctx, error);
       }
     });
+  }
+
+  /**
+   * Registra um handler para qualquer evento do Telegraf
+   * 
+   * @example
+   * ```typescript
+   * bot.registerEvent({
+   *   event: 'photo',
+   *   description: 'Handle photo messages',
+   *   handler: async (ctx) => {
+   *     await ctx.reply('Foto recebida!');
+   *   }
+   * });
+   * ```
+   */
+  registerEvent(handler: IEventHandler): void {
+    const eventName = handler.event;
+    const description = handler.description || eventName;
+    
+    this.logger.debug(`Registrando evento: ${eventName}${handler.description ? ` (${handler.description})` : ''}`);
+
+    // Criar wrapper do handler com middleware e tratamento de erro
+    const eventHandler = async (ctx: BotContext) => {
+      try {
+        // Executar middleware específico do evento
+        if (handler.middleware) {
+          for (const mw of handler.middleware) {
+            let nextCalled = false;
+            const next = async () => { nextCalled = true; };
+            await mw.execute(ctx, next);
+            if (!nextCalled) return;
+          }
+        }
+
+        // Executar handler
+        await handler.handler(ctx);
+      } catch (error) {
+        this.logger.error(`Erro no handler do evento ${eventName}`, error as Error);
+        await this.handleError(ctx, error);
+      }
+    };
+
+    // Usar o método 'on' do Telegraf que aceita qualquer evento
+    // O Telegraf suporta eventos dinâmicos através do método 'on'
+    (this.bot as any).on(eventName, eventHandler);
   }
 
   /**

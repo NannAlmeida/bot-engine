@@ -225,6 +225,49 @@ bot.registerMessage({
 });
 ```
 
+### Eventos
+
+Registre handlers para qualquer evento do Telegraf com suporte completo a TypeScript:
+
+```typescript
+// Fotos
+bot.registerEvent({
+  event: 'photo',
+  description: 'Processar fotos',
+  handler: async (ctx) => {
+    await ctx.reply('📸 Foto recebida!');
+  }
+});
+
+// Stickers
+bot.registerEvent({
+  event: 'sticker',
+  handler: async (ctx) => {
+    await ctx.reply('😄 Sticker legal!');
+  }
+});
+
+// Novos membros no chat
+bot.registerEvent({
+  event: 'new_chat_members',
+  handler: async (ctx) => {
+    const newMembers = (ctx.message as any)?.new_chat_members ?? [];
+    for (const member of newMembers) {
+      await ctx.reply(`👋 Bem-vindo, ${member.first_name}!`);
+    }
+  }
+});
+
+// Todos os 70+ eventos do Telegraf são suportados!
+// O TypeScript vai autocompletar todos os eventos disponíveis
+```
+
+**Eventos disponíveis incluem:**
+- Mensagens: `text`, `photo`, `video`, `audio`, `sticker`, `animation`, `document`, `voice`, etc.
+- Chat: `new_chat_members`, `left_chat_member`, `chat_boost`, `chat_join_request`, etc.
+- Pagamento: `invoice`, `successful_payment`, `pre_checkout_query`, `shipping_query`
+- E muitos outros eventos do Telegram
+
 ## 💾 Sessões
 
 O framework possui gerenciamento de sessões integrado:

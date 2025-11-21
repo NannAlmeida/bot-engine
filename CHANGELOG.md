@@ -1,4 +1,61 @@
-# 📝 Changelog - Bot Telegram PIX
+# 📝 Changelog - Bot Engine Telegram Framework
+
+## [1.1.0] - Sistema de Eventos Universal ✨
+
+### ✅ Adicionado
+
+#### 📡 Sistema de Registro de Eventos
+- **Novo método `registerEvent()`** - Registre handlers para qualquer evento do Telegraf
+- **70+ eventos suportados** - Todos os eventos do Telegraf disponíveis com type safety
+- **TypeScript completo** - Autocompletar para todos os eventos disponíveis
+- **Suporte a middleware** - Middleware específico por evento
+- **Tratamento de erros** - Tratamento automático de erros em handlers de eventos
+
+#### 🎯 Eventos Disponíveis
+- **Mensagens:** `text`, `photo`, `video`, `audio`, `sticker`, `animation`, `document`, `voice`, etc.
+- **Chat:** `new_chat_members`, `left_chat_member`, `chat_boost`, `chat_join_request`, etc.
+- **Pagamento:** `invoice`, `successful_payment`, `pre_checkout_query`, `shipping_query`
+- **E muitos outros:** Todos os 70+ eventos do Telegraf são suportados
+
+#### 📚 Documentação
+- Documentação completa no README.md
+- Exemplos práticos em `docs/framework.md` e `docs/quick-start.md`
+- Exemplos de uso no `examples/basic-bot.ts`
+
+#### 🔧 Melhorias Técnicas
+- Tipo `TelegrafEvent` com todos os eventos suportados
+- Interface `IEventHandler` para type safety
+- Logs melhorados durante inicialização de plugins
+- Tratamento de erros robusto em handlers de eventos
+
+### 📝 Exemplo de Uso
+
+```typescript
+// Registrar handler para qualquer evento
+bot.registerEvent({
+  event: 'photo',
+  description: 'Handle photo uploads',
+  handler: async (ctx) => {
+    await ctx.reply('📸 Photo received!');
+  }
+});
+
+// Com middleware
+bot.registerEvent({
+  event: 'new_chat_members',
+  middleware: [new LoggingMiddleware()],
+  handler: async (ctx) => {
+    // Seu código aqui
+  }
+});
+```
+
+### 🎨 Melhorias de UX
+- Logs de inicialização de plugins mais informativos
+- Mensagens de progresso durante inicialização
+- Feedback claro sobre quantos plugins foram inicializados
+
+---
 
 ## [1.2.0] - UX Melhorada - Código + QR Code Automático 🎨
 

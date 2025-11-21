@@ -4,6 +4,7 @@
  */
 
 import { Context as TelegrafContext, Markup } from 'telegraf';
+import { TelegrafEvent } from './types';
 
 /**
  * Contexto estendido do bot com sessão e helpers
@@ -110,6 +111,16 @@ export interface IMessageHandler {
 }
 
 /**
+ * Handler genérico para qualquer evento do Telegraf
+ */
+export interface IEventHandler {
+  event: TelegrafEvent;
+  handler: (ctx: BotContext) => void | Promise<void>;
+  middleware?: IMiddleware[];
+  description?: string;
+}
+
+/**
  * Interface do motor do bot
  */
 export interface IBotEngine {
@@ -127,6 +138,11 @@ export interface IBotEngine {
    * Registra um handler de mensagem
    */
   registerMessage(handler: IMessageHandler): void;
+  
+  /**
+   * Registra um handler para qualquer evento do Telegraf
+   */
+  registerEvent(handler: IEventHandler): void;
   
   /**
    * Adiciona middleware global
