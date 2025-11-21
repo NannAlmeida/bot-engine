@@ -6,10 +6,12 @@ Welcome to the Telegraf Bot Framework documentation!
 
 ### Getting Started
 - [Quick Start Guide](quick-start.md) - Get started in 5 minutes
+- [CLI Tool](cli.md) - Create projects with templates
 - [Installation](../README.md#-installation) - How to install the framework
 
 ### Core Documentation
 - [Framework Overview](framework.md) - Complete framework documentation
+- [HTTP Integration](http-integration.md) - REST API and webhooks
 - [API Reference](summary.md) - Detailed API documentation
 - [Migration Guide](migration.md) - Migrate from plain Telegraf
 
@@ -23,6 +25,8 @@ Welcome to the Telegraf Bot Framework documentation!
 ### Examples
 - [Basic Bot](../examples/basic-bot.ts) - Simple bot example
 - [Advanced Bot](../examples/advanced-bot.ts) - Bot with plugins and middleware
+- [HTTP Bot](../examples/http-bot.ts) - Bot with HTTP server
+- [Webhook Integration](../examples/webhook-integration.ts) - External integrations
 
 ## 🎯 Features
 
@@ -30,6 +34,9 @@ Welcome to the Telegraf Bot Framework documentation!
 - 🔌 Plugin system
 - 🛡️ Middleware support
 - 💾 Session management
+- 🌐 HTTP/REST API integration (Express)
+- 🪝 Webhook support
+- 🛠️ CLI for project creation
 - 🎯 Type-safe TypeScript
 - 📝 Well documented
 - ✅ Tested

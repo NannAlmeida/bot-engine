@@ -1,5 +1,86 @@
 # 📝 Changelog - Bot Engine Telegram Framework
 
+## [1.2.0] - CLI Tool e Integração HTTP 🚀
+
+### ✅ Adicionado
+
+#### 🛠️ CLI Tool
+- **Comando `create-bot-engine init`** - Crie projetos instantaneamente
+- **Template Basic** - Bot simples com comandos essenciais
+- **Template Express** - Bot com servidor HTTP integrado
+- **Assistente interativo** - Configuração guiada
+- **Instalação automática** - Dependências instaladas automaticamente
+
+#### 🌐 Integração HTTP (Express)
+- **Servidor HTTP integrado** - Express.js no BotEngine
+- **Rotas padrão automáticas** - `/`, `/health`, `/status`
+- **CORS configurável** - Simples ou avançado
+- **Middleware customizável** - Adicione seus próprios middlewares
+- **Graceful shutdown** - Encerramento limpo do servidor e bot
+
+#### 📚 Documentação Nova
+- **docs/cli.md** - Guia completo do CLI
+- **docs/http-integration.md** - Webhooks e REST APIs (400+ linhas)
+- Exemplos práticos de webhooks e integrações
+
+#### 💻 Exemplos Novos
+- **examples/http-bot.ts** - Bot com servidor HTTP e rotas
+- **examples/webhook-integration.ts** - Integrações externas completas
+
+#### 🧪 Testes
+- **55 novos testes** - 100% de cobertura
+- HttpServer.test.ts - 19 testes
+- BotEngine.http.test.ts - 13 testes
+- templates.test.ts - 23 testes
+
+### 📝 Uso
+
+**Criar projeto com CLI:**
+```bash
+npx bot-engine-telegram init meu-bot
+```
+
+**Bot com servidor HTTP:**
+```typescript
+const bot = new BotEngine({
+  token: process.env.BOT_TOKEN!,
+  http: {
+    enabled: true,
+    port: 3000,
+    cors: true
+  }
+});
+
+const httpServer = bot.getHttpServer();
+httpServer.post('/webhook', async (req, res) => {
+  // Processar webhook
+});
+```
+
+### 🔧 Melhorias Técnicas
+- Nova classe `HttpServer` para gerenciar Express
+- Interface `IHttpServer` com métodos completos
+- Interfaces atualizadas: `BotConfig`, `HttpServerConfig`
+- Binários CLI configurados no package.json
+
+### 📦 Novas Dependências
+```json
+{
+  "dependencies": {
+    "express": "^4.18.2",
+    "commander": "^11.1.0",
+    "@inquirer/prompts": "^3.3.0",
+    "chalk": "^4.1.2",
+    "fs-extra": "^11.2.0"
+  }
+}
+```
+
+### 🔄 Breaking Changes
+**Nenhum!** Versão 100% retrocompatível.
+
+---
+
 ## [1.1.0] - Sistema de Eventos Universal ✨
 
 ### ✅ Adicionado
