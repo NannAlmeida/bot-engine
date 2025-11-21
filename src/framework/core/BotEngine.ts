@@ -14,10 +14,12 @@ import {
   IEventHandler,
   IMiddleware,
   IPlugin,
-  ILogger
+  ILogger,
+  IHttpServer
 } from '../types/interfaces';
 import { TelegrafEvent } from '../types/types';
 import { SessionManager } from './SessionManager';
+import { HttpServer } from './HttpServer';
 import { ConsoleLogger } from '../utils/Logger';
 
 export class BotEngine implements IBotEngine {
@@ -25,6 +27,7 @@ export class BotEngine implements IBotEngine {
   private plugins: Map<string, IPlugin>;
   private middleware: IMiddleware[];
   private sessionManager?: SessionManager;
+  private httpServer?: HttpServer;
   private logger: ILogger;
   private isRunning: boolean = false;
 
@@ -33,6 +36,12 @@ export class BotEngine implements IBotEngine {
     this.plugins = new Map();
     this.middleware = [];
     this.logger = logger || new ConsoleLogger();
+
+    // Configurar servidor HTTP se habilitado
+    if (config.http?.enabled) {
+      this.httpServer = new HttpServer(config.http, this.logger);
+      this.setupDefaultHttpRoutes();
+    }
 
     // Configurar sessão se habilitado
     if (config.session?.enabled) {
@@ -254,6 +263,11 @@ export class BotEngine implements IBotEngine {
       // Inicializar plugins
       await this.initializePlugins();
 
+      // Iniciar servidor HTTP se configurado
+      if (this.httpServer) {
+        await this.httpServer.start();
+      }
+
       // Iniciar bot
       await this.bot.launch();
       this.isRunning = true;
@@ -294,6 +308,13 @@ export class BotEngine implements IBotEngine {
       } catch (error) {
         this.logger.error(`Erro ao destruir plugin ${name}`, error as Error);
       }
+    }
+
+    // Parar servidor HTTP
+    if (this.httpServer) {
+      this.httpServer.stop().catch((error) => {
+        this.logger.error('Erro ao parar servidor HTTP', error);
+      });
     }
 
     this.bot.stop(signal);
@@ -366,6 +387,67 @@ export class BotEngine implements IBotEngine {
    */
   getLogger(): ILogger {
     return this.logger;
+  }
+
+  /**
+   * Obtém a instância do servidor HTTP (se habilitado)
+   */
+  getHttpServer(): IHttpServer | undefined {
+    return this.httpServer;
+  }
+
+  /**
+   * Configura rotas HTTP padrão
+   */
+  private setupDefaultHttpRoutes(): void {
+    if (!this.httpServer) return;
+
+    // Rota de health check
+    this.httpServer.get('/health', (req, res) => {
+      res.json({
+        status: 'ok',
+        timestamp: new Date().toISOString(),
+        uptime: process.uptime()
+      });
+    });
+
+    // Rota de status do bot
+    this.httpServer.get('/status', async (req, res) => {
+      try {
+        const botInfo = this.getBotInfo();
+        res.json({
+          status: 'online',
+          bot: {
+            id: botInfo?.id,
+            username: botInfo?.username,
+            name: botInfo?.first_name
+          },
+          server: {
+            uptime: process.uptime(),
+            memory: process.memoryUsage(),
+            timestamp: new Date().toISOString()
+          }
+        });
+      } catch (error) {
+        res.status(500).json({
+          status: 'error',
+          error: 'Erro ao obter status do bot'
+        });
+      }
+    });
+
+    // Rota principal
+    this.httpServer.get('/', (req, res) => {
+      res.json({
+        name: this.config.name || 'Bot Engine',
+        description: this.config.description || 'Bot Telegram criado com Bot Engine',
+        version: '1.2.0',
+        endpoints: {
+          health: '/health',
+          status: '/status'
+        }
+      });
+    });
   }
 }
 

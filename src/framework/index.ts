@@ -6,6 +6,7 @@
 // Core
 export { BotEngine } from './core/BotEngine';
 export { SessionManager } from './core/SessionManager';
+export { HttpServer } from './core/HttpServer';
 
 // Types
 export * from './types/interfaces';

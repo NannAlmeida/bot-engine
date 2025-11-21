@@ -35,6 +35,20 @@ export interface BotConfig {
   plugins?: IPlugin[];
   middleware?: IMiddleware[];
   session?: SessionConfig;
+  http?: HttpServerConfig;
+}
+
+/**
+ * Configuração do servidor HTTP
+ */
+export interface HttpServerConfig {
+  enabled: boolean;
+  port?: number;
+  host?: string;
+  cors?: boolean | {
+    origin?: string | string[];
+    credentials?: boolean;
+  };
 }
 
 /**
@@ -173,7 +187,72 @@ export interface IBotEngine {
    * Obtém logger
    */
   getLogger(): ILogger;
+  
+  /**
+   * Obtém a instância do Express (se habilitado)
+   */
+  getHttpServer?(): IHttpServer | undefined;
 }
+
+/**
+ * Interface do servidor HTTP
+ */
+export interface IHttpServer {
+  /**
+   * Adiciona uma rota GET
+   */
+  get(path: string, handler: HttpHandler): void;
+  
+  /**
+   * Adiciona uma rota POST
+   */
+  post(path: string, handler: HttpHandler): void;
+  
+  /**
+   * Adiciona uma rota PUT
+   */
+  put(path: string, handler: HttpHandler): void;
+  
+  /**
+   * Adiciona uma rota DELETE
+   */
+  delete(path: string, handler: HttpHandler): void;
+  
+  /**
+   * Adiciona middleware HTTP
+   */
+  use(handler: HttpHandler | string, middleware?: HttpHandler): void;
+  
+  /**
+   * Obtém a instância do Express
+   */
+  getApp(): any;
+  
+  /**
+   * Obtém a porta do servidor
+   */
+  getPort(): number;
+  
+  /**
+   * Obtém o host do servidor
+   */
+  getHost(): string;
+  
+  /**
+   * Inicia o servidor HTTP
+   */
+  start(): Promise<void>;
+  
+  /**
+   * Para o servidor HTTP
+   */
+  stop(): Promise<void>;
+}
+
+/**
+ * Handler HTTP
+ */
+export type HttpHandler = (req: any, res: any, next?: any) => void | Promise<void>;
 
 /**
  * Builder para mensagens com botões
