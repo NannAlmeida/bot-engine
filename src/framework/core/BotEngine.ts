@@ -169,19 +169,28 @@ export class BotEngine implements IBotEngine {
    * Inicializa todos os plugins
    */
   private async initializePlugins(): Promise<void> {
-    this.logger.info('Inicializando plugins...');
+    const pluginCount = this.plugins.size;
+    
+    if (pluginCount === 0) {
+      this.logger.info('Nenhum plugin para inicializar');
+      return;
+    }
+
+    this.logger.info(`Inicializando ${pluginCount} plugin(s)...`);
 
     for (const [name, plugin] of this.plugins) {
       try {
-        this.logger.debug(`Inicializando plugin: ${name}`);
+        this.logger.info(`  → Inicializando plugin: ${name}`);
         await plugin.initialize(this);
         await plugin.register();
-        this.logger.info(`✓ Plugin ${name} inicializado`);
+        this.logger.info(`  ✓ Plugin ${name} inicializado com sucesso`);
       } catch (error) {
         this.logger.error(`Erro ao inicializar plugin ${name}`, error as Error);
         throw error;
       }
     }
+
+    this.logger.info(`✓ Todos os ${pluginCount} plugin(s) foram inicializados`);
   }
 
   /**
